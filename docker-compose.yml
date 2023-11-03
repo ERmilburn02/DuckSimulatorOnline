@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  postgres:
+    platform: linux/amd64
+    image: postgres:alpine
+    container_name: ducksimonline_db
+    restart: unless-stopped
+    ports:
+      - 15432:5432
+    environment:
+      - POSTGRES_PASSWORD=supersecretlocalpassword

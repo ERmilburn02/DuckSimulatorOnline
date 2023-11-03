@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "discord",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint \"src/**/*.ts\"",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf .turbo node_modules dist"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    "config": "workspace:*",
+    "database": "workspace:*",
+    "eslint": "^8.52.0",
+    "rimraf": "^5.0.5",
+    "tsconfig": "workspace:*",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  }
+}

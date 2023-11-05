@@ -11,21 +11,30 @@ generator client {
 }
 
 model User {
-  id              Int      @id @default(autoincrement())
-  discordUserId   String   @unique
+  id              Int         @id @default(autoincrement())
+  discordUserId   String      @unique
   displayName     String
   username        String
   discriminator   String
   avatarURL       String
-  messages        Int      @default(0)
-  xp              Int      @default(0)
-  lastMessageTime DateTime @default(now())
-  config          Config?
+  messages        Int         @default(0)
+  xp              Int         @default(0)
+  lastMessageTime DateTime    @default(now())
+  config          UserConfig?
 }
 
-model Config {
+model UserConfig {
   id     Int     @id @default(autoincrement())
   ping   Boolean @default(false)
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
+}
+
+model AppConfig {
+  version           Int      @id @default(autoincrement())
+  lastDeployTime    DateTime @default(now()) // Last time commands were deployed to Discord
+  autoRedeployTimer Int      @default(7)
+  deployOnStart     Boolean  @default(true) // Deploy commands to Discord during startup
+  clientID          String   @default("")
+  appGuildID        String   @default("")
 }

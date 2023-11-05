@@ -1,6 +1,6 @@
 import { prisma } from ".";
 
-import type { User } from "@prisma/client";
+import type { AppConfig, User } from "@prisma/client";
 
 const DEFAULT_USERS = [
   // Add your own user to pre-populate the database with
@@ -13,6 +13,10 @@ const DEFAULT_USERS = [
       "https://cdn.discordapp.com/avatars/676511901890510848/536e2f0b4c9e7023d9b1da761446f8d3.webp",
   },
 ] as Array<User>;
+
+const DEFAULT_APP_CONFIG = {
+  version: 1,
+} as AppConfig;
 
 (async () => {
   debugger;
@@ -35,6 +39,17 @@ const DEFAULT_USERS = [
         })
       )
     );
+    await prisma.appConfig.upsert({
+      where: {
+        version: DEFAULT_APP_CONFIG.version!,
+      },
+      update: {
+        ...DEFAULT_APP_CONFIG,
+      },
+      create: {
+        ...DEFAULT_APP_CONFIG,
+      },
+    });
   } catch (error) {
     console.error(error);
     process.exit(1);

@@ -2,7 +2,7 @@ import { prisma } from "database";
 import Image from "next/image";
 
 export default async function IndexPage() {
-  const users = await prisma.user.findMany({ include: { config: {} } });
+  // const users = await prisma.user.findMany({ include: { config: {} } });
 
   const placeholderUser = {
     id: 1,
@@ -32,7 +32,7 @@ export default async function IndexPage() {
           height={300}
           unoptimized
         />
-        <p>{placeholderUser.displayName}</p>
+        <p className="font-bold">{placeholderUser.displayName}</p>
         <p>
           {placeholderUser.username}
           {placeholderUser.discriminator == "0"

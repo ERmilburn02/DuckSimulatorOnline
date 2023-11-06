@@ -8,7 +8,7 @@ import {
   Routes,
 } from "discord.js";
 import { DuckClient, type DuckCommand, type DuckEvent } from "./types";
-import { prisma } from "database";
+import { AppConfig, prisma } from "database";
 
 import { PingCommand, QuackCommand } from "./commands";
 import {
@@ -76,6 +76,47 @@ const isDateOlderThanDays = (dateToCheck: Date, days: number) => {
   return dateToCheck < prev;
 };
 
+const loadEventsAndCommands = (
+  client: DuckClient,
+  commands: Collection<string, DuckCommand>,
+  events: Array<DuckEvent<keyof ClientEvents>>
+) => {
+  for (const event of events) {
+    if (event.once) {
+      client.once(event.name, (...args) => event.execute(...args));
+    } else {
+      client.on(event.name, (...args) => event.execute(...args));
+    }
+  }
+
+  for (const command of commands) {
+    client.commands.set(command[0], command[1]);
+  }
+};
+
+const checkForDeploymentUpdate = async (
+  config: AppConfig,
+  localCommands: Array<[string, DuckCommand]>,
+  globalCommands: Array<[string, DuckCommand]>
+) => {
+  if (
+    config.deployOnStart ||
+    isDateOlderThanDays(config.lastDeployTime, config.autoRedeployTimer)
+  ) {
+    await deployCommands(localCommands, globalCommands);
+
+    await prisma.appConfig.update({
+      where: {
+        version: config.version,
+      },
+      data: {
+        lastDeployTime: new Date(),
+        deployOnStart: false,
+      },
+    });
+  }
+};
+
 (async () => {
   const VERSION = "0.1.0";
 
@@ -107,36 +148,11 @@ const isDateOlderThanDays = (dateToCheck: Date, days: number) => {
     },
   });
 
-  for (const event of EVENTS) {
-    if (event.once) {
-      CLIENT.once(event.name, (...args) => event.execute(...args));
-    } else {
-      CLIENT.on(event.name, (...args) => event.execute(...args));
-    }
-  }
-
-  for (const command of ALL_COMMANDS) {
-    CLIENT.commands.set(command[0], command[1]);
-  }
+  loadEventsAndCommands(CLIENT, ALL_COMMANDS, EVENTS);
 
   const appConfig = await getLatestAppConfig();
 
-  if (
-    appConfig.deployOnStart ||
-    isDateOlderThanDays(appConfig.lastDeployTime, appConfig.autoRedeployTimer)
-  ) {
-    await deployCommands(LOCAL_COMMANDS, GLOBAL_COMMANDS);
-
-    await prisma.appConfig.update({
-      where: {
-        version: appConfig.version,
-      },
-      data: {
-        lastDeployTime: new Date(),
-        deployOnStart: false,
-      },
-    });
-  }
+  await checkForDeploymentUpdate(appConfig, LOCAL_COMMANDS, GLOBAL_COMMANDS);
 
   CLIENT.login(process.env.DISCORD_BOT_TOKEN);
 })();

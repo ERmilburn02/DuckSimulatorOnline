@@ -61,6 +61,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@prisma/nextjs-monorepo-workaround-plugin':
+        specifier: ^5.5.2
+        version: 5.5.2
       '@types/node':
         specifier: ^20.8.10
         version: 20.8.10
@@ -658,6 +661,10 @@ packages:
   /@prisma/engines@5.5.2:
     resolution: {integrity: sha512-Be5hoNF8k+lkB3uEMiCHbhbfF6aj1GnrTBnn5iYFT7GEr3TsOEp1soviEcBR0tYCgHbxjcIxJMhdbvxALJhAqg==}
     requiresBuild: true
+
+  /@prisma/nextjs-monorepo-workaround-plugin@5.5.2:
+    resolution: {integrity: sha512-iYXDnY0L7HkZS57ui6Q+vL7g+RFlJDFrW3lQcUXs/RxYia7YGiq7OwF452An+K11YL1YDUo5LF/E48hPgeI9ZQ==}
+    dev: true
 
   /@rushstack/eslint-patch@1.5.1:
     resolution: {integrity: sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==}

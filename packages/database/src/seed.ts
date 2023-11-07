@@ -12,6 +12,22 @@ const DEFAULT_USERS = [
     avatarURL:
       "https://cdn.discordapp.com/avatars/676511901890510848/536e2f0b4c9e7023d9b1da761446f8d3.webp",
   },
+  {
+    discordUserId: "356398636982206485",
+    displayName: "Cebo",
+    username: "a_folf",
+    discriminator: "0",
+    avatarURL:
+      "https://cdn.discordapp.com/avatars/356398636982206485/ce58389e49d6aaacb9168d7e002b20ab.webp",
+  },
+  {
+    discordUserId: "428258078417354782",
+    displayName: "Orius",
+    username: "orius",
+    discriminator: "0",
+    avatarURL:
+      "https://cdn.discordapp.com/avatars/428258078417354782/0c26a66d6237c262f0588f864cde2d92.webp",
+  },
 ] as Array<User>;
 
 const DEFAULT_APP_CONFIG = {

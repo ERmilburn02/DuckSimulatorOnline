@@ -1,5 +1,6 @@
 import { prisma } from "database";
 import LeaderboardProfile from "../components/LeaderboardProfile";
+import Leaderboard from "../components/Leaderboard";
 
 export const dynamic = "force-dynamic";
 
@@ -9,13 +10,7 @@ export default async function IndexPage() {
   return (
     <div className="w-full h-full">
       {/* LEADERBOARD */}
-      <div className="w-11/12 mx-auto flex flex-col">
-        {users.map((user, index) => {
-          return (
-            <LeaderboardProfile user={user} position={index} key={user.id} />
-          );
-        })}
-      </div>
+      <Leaderboard users={users} />
     </div>
   );
 }

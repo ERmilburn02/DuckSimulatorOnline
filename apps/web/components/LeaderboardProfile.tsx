@@ -9,6 +9,19 @@ const usernameUI = (username: string, discriminator: string): string => {
   }`;
 };
 
+const getPositionColor = (position: number): string | undefined => {
+  switch (position) {
+    case 0:
+      return "#ee0";
+    case 1:
+      return "#bbb";
+    case 2:
+      return "#bf7f3f";
+    default:
+      return undefined;
+  }
+};
+
 export type LeaderboardProfileProps = {
   user: User;
   position: number;
@@ -21,7 +34,10 @@ export default function LeaderboardProfile({
   return (
     <>
       <div className="grid grid-cols-level-leaderboard-mobile md:grid-cols-level-leaderboard grid-rows-2 text-center items-center justify-items-center w-full h-24 md:h-36 my-4">
-        <div className="row-span-2 font-bold text-xl md:text-5xl m-1">
+        <div
+          className="row-span-2 font-bold text-xl md:text-5xl m-1"
+          style={{ color: getPositionColor(position) }}
+        >
           #{position + 1 /* Adding 1 to make it start at 1 */}
         </div>
         <div className="row-span-2 overflow-hidden">
@@ -36,15 +52,21 @@ export default function LeaderboardProfile({
           </div>
         </div>
         <div
-          className="text-md md:text-3xl overflow-hidden px-4"
-          title={usernameUI(user.username, user.discriminator)}
+          className="text-md md:text-3xl overflow-hidden whitespace-nowrap overflow-ellipsis w-10/12"
+          title={`${user.displayName} (${usernameUI(
+            user.username,
+            user.discriminator
+          )})`}
         >
-          {/* {usernameUI(user.username, user.discriminator)} */}
           {user.displayName}
         </div>
         <div className="text-md md:text-3xl">Level undefined</div>
-        <div className="text-md md:text-3xl">{user.xp} XP</div>
-        <div className="text-md md:text-3xl">{user.messages} messages</div>
+        <div className="text-md md:text-3xl">
+          {user.xp.toLocaleString("en-US")} XP
+        </div>
+        <div className="text-md md:text-3xl">
+          {user.messages.toLocaleString("en-US")} messages
+        </div>
       </div>
     </>
   );

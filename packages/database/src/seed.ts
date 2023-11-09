@@ -28,6 +28,14 @@ const DEFAULT_USERS = [
     avatarURL:
       "https://cdn.discordapp.com/avatars/428258078417354782/0c26a66d6237c262f0588f864cde2d92.webp",
   },
+  {
+    discordUserId: "541331027466125315",
+    displayName: "GoldZook",
+    username: "goldzook",
+    discriminator: "0",
+    avatarURL:
+      "https://cdn.discordapp.com/avatars/541331027466125315/a56fb66f88a46c077a0162a03639b8c8.webp",
+  },
 ] as Array<User>;
 
 const DEFAULT_APP_CONFIG = {

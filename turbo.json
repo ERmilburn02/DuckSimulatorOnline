@@ -1,7 +1,12 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["NODE_ENV", "DISCORD_BOT_TOKEN"],
+  "globalEnv": [
+    "NODE_ENV",
+    "DISCORD_BOT_TOKEN",
+    "DATABASE_PRISMA_URL",
+    "DATABASE_URL_NON_POOLING"
+  ],
   "pipeline": {
     "build": {
       "dependsOn": ["lint", "^build"],

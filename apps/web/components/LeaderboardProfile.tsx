@@ -1,4 +1,4 @@
-import { User } from "database";
+import { type User } from "database";
 import Image from "next/image";
 
 const usernameUI = (username: string, discriminator: string): string => {

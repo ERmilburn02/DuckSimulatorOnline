@@ -4,9 +4,7 @@ import LeaderboardProfile from "../components/LeaderboardProfile";
 export const dynamic = "force-dynamic";
 
 export default async function IndexPage() {
-  const users = await prisma.user.findMany();
-
-  users.sort((a, b) => b.xp - a.xp);
+  const users = await prisma.user.findMany({ orderBy: { xp: "desc" } });
 
   return (
     <div className="w-full h-full">

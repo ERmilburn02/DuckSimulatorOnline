@@ -20,6 +20,7 @@ model User {
   avatarURL       String
   messages        Int         @default(0)
   xp              Int         @default(0)
+  level           Int         @default(0)
   lastMessageTime DateTime    @default(now())
   config          UserConfig?
 }
@@ -32,10 +33,12 @@ model UserConfig {
 }
 
 model AppConfig {
-  version           Int      @id @default(autoincrement())
-  lastDeployTime    DateTime @default(now()) // Last time commands were deployed to Discord
-  autoRedeployTimer Int      @default(7)
-  deployOnStart     Boolean  @default(true) // Deploy commands to Discord during startup
-  clientID          String   @default("")
-  appGuildID        String   @default("")
+  version              Int      @id @default(autoincrement())
+  lastDeployTime       DateTime @default(now()) // Last time commands were deployed to Discord
+  autoRedeployTimer    Int      @default(7)
+  deployOnStart        Boolean  @default(true) // Deploy commands to Discord during startup
+  clientID             String   @default("")
+  appGuildID           String   @default("")
+  baseXPPerLevel       Int      @default(50)
+  XPMultiplierPerLevel Float    @default(1.3)
 }

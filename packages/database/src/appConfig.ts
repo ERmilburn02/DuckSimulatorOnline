@@ -4,7 +4,7 @@ export const getLatestAppConfig: () => Promise<AppConfig> = async () => {
   const appConfigs = await prisma.appConfig.findMany();
 
   if (appConfigs.length == 0) {
-    throw new Error("No AppConfig! Bot cannot start!");
+    throw new Error("No AppConfig");
   }
 
   appConfigs.sort((a, b) => b.version - a.version);

@@ -35,7 +35,7 @@ model UserConfig {
 model AppConfig {
   version              Int      @id @default(autoincrement())
   lastDeployTime       DateTime @default(now()) // Last time commands were deployed to Discord
-  autoRedeployTimer    Int      @default(7)
+  autoRedeployTimer    Int      @default(7) // Time in days till the next command deploy
   deployOnStart        Boolean  @default(true) // Deploy commands to Discord during startup
   clientID             String   @default("")
   appGuildID           String   @default("")

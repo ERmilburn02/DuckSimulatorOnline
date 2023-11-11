@@ -35,7 +35,7 @@ export default function LeaderboardProfile({
 }: LeaderboardProfileProps) {
   return (
     <>
-      <div className="grid grid-cols-level-leaderboard-mobile md:grid-cols-level-leaderboard grid-rows-2 text-center items-center justify-items-center w-full h-24 md:h-36 my-4">
+      <div className="grid grid-cols-level-leaderboard-mobile md:grid-cols-level-leaderboard grid-rows-2 text-center items-center justify-items-center w-full md:w-[98%] h-24 md:h-36 border rounded-3xl md:my-2 mx-auto">
         <div
           className="row-span-2 font-bold text-xl md:text-5xl m-1"
           style={{ color: getPositionColor(position) }}

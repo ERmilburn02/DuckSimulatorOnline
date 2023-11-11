@@ -1,3 +1,5 @@
+"use client";
+
 import { type User } from "database";
 import Image from "next/image";
 
@@ -60,7 +62,9 @@ export default function LeaderboardProfile({
         >
           {user.displayName}
         </div>
-        <div className="text-md md:text-3xl">Level undefined</div>
+        <div className="text-md md:text-3xl">
+          Level {user.level.toLocaleString("en-us")}
+        </div>
         <div className="text-md md:text-3xl">
           {user.xp.toLocaleString("en-US")} XP
         </div>

@@ -2,9 +2,12 @@
 
 import { prisma } from "database";
 import LeaderboardProfile from "./LeaderboardProfile";
+import { unstable_noStore as noStore } from "next/cache";
 import { setTimeout } from "timers/promises";
 
 export default async function Leaderboard() {
+  noStore();
+
   const users = await prisma.user.findMany({
     orderBy: { xp: "desc" },
     take: 10,

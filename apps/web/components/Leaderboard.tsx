@@ -13,6 +13,25 @@ export default async function Leaderboard() {
     take: 10,
   });
 
+  if (users.length < 10) {
+    const placeholdersToAdd = 10 - users.length;
+
+    for (let i = 0; i < placeholdersToAdd; i++) {
+      users.push({
+        id: -1,
+        discordUserId: "",
+        displayName: "Nobody",
+        username: "nobody",
+        discriminator: "0",
+        avatarURL: `https://cdn.discordapp.com/embed/avatars/${i % 6}.png`,
+        messages: 0,
+        xp: 0,
+        level: 0,
+        lastMessageTime: new Date(),
+      });
+    }
+  }
+
   return (
     <>
       <div className="w-11/12 mx-auto flex flex-col border-2 rounded-3xl">

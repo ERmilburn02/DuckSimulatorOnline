@@ -7,6 +7,13 @@ export default async function SkeletonLeaderboard() {
         <SkeletonLeaderboardProfile />
         <SkeletonLeaderboardProfile />
         <SkeletonLeaderboardProfile />
+        <SkeletonLeaderboardProfile />
+        <SkeletonLeaderboardProfile />
+        <SkeletonLeaderboardProfile />
+        <SkeletonLeaderboardProfile />
+        <SkeletonLeaderboardProfile />
+        <SkeletonLeaderboardProfile />
+        <SkeletonLeaderboardProfile />
       </div>
     </>
   );

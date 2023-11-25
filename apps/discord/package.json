@@ -10,7 +10,8 @@
     "clean": "rimraf .turbo node_modules dist"
   },
   "dependencies": {
-    "discord.js": "^14.13.0"
+    "discord.js": "^14.13.0",
+    "openai": "^4.20.0"
   },
   "devDependencies": {
     "@types/node": "^20.8.10",

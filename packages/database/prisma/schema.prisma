@@ -41,4 +41,12 @@ model AppConfig {
   appGuildID           String   @default("")
   baseXPPerLevel       Int      @default(50)
   XPMultiplierPerLevel Float    @default(1.3)
+  AIID                 String   @default("")
+  AIForumID            String   @default("")
+}
+
+model QuackerAIThreads {
+  id                     Int    @id @default(autoincrement())
+  threadDiscordChannelID String @default("")
+  threadAIID             String @default("")
 }

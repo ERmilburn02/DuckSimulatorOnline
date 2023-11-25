@@ -8,14 +8,16 @@ import {
   Routes,
 } from "discord.js";
 import { DuckClient, type DuckCommand, type DuckEvent } from "./types";
-import { AppConfig, prisma } from "database";
+import { AppConfig, getLatestAppConfig, prisma } from "database";
 
 import { PingCommand, QuackCommand } from "./commands";
 import {
   InteractionCreateEvent,
   MessageCreateEvent,
   ReadyEvent,
+  ThreadCreateEvent,
 } from "./events";
+import { isDateOlderThanDays } from "./utils/date";
 
 const deployCommands = async (
   localCommands: Array<[string, DuckCommand]>,
@@ -38,6 +40,7 @@ const deployCommands = async (
     console.log(`Reloaded ${res.length} guild commands`);
   } catch (error) {
     console.error(error);
+    throw error;
   }
 
   try {
@@ -53,27 +56,8 @@ const deployCommands = async (
     console.log(`Reloaded ${res.length} global commands`);
   } catch (error) {
     console.error(error);
+    throw error;
   }
-};
-
-const getLatestAppConfig = async () => {
-  const appConfigs = await prisma.appConfig.findMany();
-
-  if (appConfigs.length == 0) {
-    throw new Error("No AppConfig! Bot cannot start!");
-  }
-
-  appConfigs.sort((a, b) => b.version - a.version);
-
-  return appConfigs[0];
-};
-
-const isDateOlderThanDays = (dateToCheck: Date, days: number) => {
-  const now = new Date();
-  const prev = new Date(now);
-  prev.setDate(now.getDate() - days);
-
-  return dateToCheck < prev;
 };
 
 const loadEventsAndCommands = (
@@ -103,17 +87,24 @@ const checkForDeploymentUpdate = async (
     config.deployOnStart ||
     isDateOlderThanDays(config.lastDeployTime, config.autoRedeployTimer)
   ) {
-    await deployCommands(localCommands, globalCommands);
+    try {
+      await deployCommands(localCommands, globalCommands);
 
-    await prisma.appConfig.update({
-      where: {
-        version: config.version,
-      },
-      data: {
-        lastDeployTime: new Date(),
-        deployOnStart: false,
-      },
-    });
+      await prisma.appConfig.update({
+        where: {
+          version: config.version,
+        },
+        data: {
+          lastDeployTime: new Date(),
+          deployOnStart: false,
+        },
+      });
+    } catch (error) {
+      console.error(
+        `An error occurred! Check the above logs for more details.\n\nCaution: Some data might be corrupt. It is recommended to fix the issues and redeploy ASAP.`
+      );
+      throw error;
+    }
   }
 };
 
@@ -135,6 +126,8 @@ const checkForDeploymentUpdate = async (
   const EVENTS: Array<DuckEvent<keyof ClientEvents>> = [
     ReadyEvent,
     InteractionCreateEvent,
+    ThreadCreateEvent,
+    MessageCreateEvent,
   ];
 
   const CLIENT = new DuckClient(VERSION, ALL_COMMANDS, {

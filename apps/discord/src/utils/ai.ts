@@ -152,7 +152,7 @@ const handleNewAIThread = async (discordThread: AnyThreadChannel<boolean>) => {
       continue;
     }
 
-    message.channel.sendTyping();
+    const typingPromise = message.channel.sendTyping();
 
     console.log(`Found delayed message, sending to AI`);
 
@@ -169,12 +169,47 @@ const handleNewAIThread = async (discordThread: AnyThreadChannel<boolean>) => {
       threads.threadAIID
     );
 
+    await typingPromise;
+
     newMessages.forEach((msg) => {
       message.channel.send(msg);
     });
 
     break;
   }
+};
+
+const handleNewAIMessage = async (discordMessage: Message<boolean>) => {
+  const typingPromise = discordMessage.channel.sendTyping();
+
+  const threads = await getThreads(discordMessage.channelId);
+  if (threads == null) {
+    console.error(
+      `getThreads returned null for discordThread ${discordMessage.channelId}`
+    );
+    discordMessage.channel.send({
+      content:
+        "Sorry, Quacker is not available right now. Please try again later",
+    });
+    return;
+  }
+
+  await addMessageToThread(discordMessage, threads.threadAIID);
+  const run = await startRun(threads.threadAIID);
+  await waitForRunCompletion(threads.threadAIID, run.id);
+
+  const newMessages = await getNewMessages(
+    discordMessage.content,
+    threads.threadAIID
+  );
+
+  await typingPromise;
+
+  newMessages.forEach((msg) => {
+    discordMessage.channel.send(msg);
+  });
+
+  return;
 };
 
 export {
@@ -185,4 +220,5 @@ export {
   waitForRunCompletion,
   getNewMessages,
   handleNewAIThread,
+  handleNewAIMessage,
 };

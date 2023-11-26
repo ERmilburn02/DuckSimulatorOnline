@@ -1,7 +1,7 @@
 import { ChannelType, Events } from "discord.js";
 import { DuckClient, type DuckEvent } from "../types";
 import { getLatestAppConfig, prisma } from "database";
-import { setTimeout } from "timers/promises";
+import { handleNewAIMessage } from "../utils/ai";
 
 const isFromImportantChannel: (channelID: string) => Promise<boolean> = async (
   channelID: string
@@ -51,8 +51,7 @@ const MessageCreateEvent: DuckEvent<Events.MessageCreate> = {
         }
         console.log(`Message is from AI thread`);
 
-        // TODO: Communicate with OpenAI
-        return;
+        handleNewAIMessage(message);
       }
     }
   },

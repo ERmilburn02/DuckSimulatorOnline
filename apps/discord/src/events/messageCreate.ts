@@ -1,5 +1,5 @@
 import { ChannelType, Events } from "discord.js";
-import { type DuckEvent } from "../types";
+import { DuckClient, type DuckEvent } from "../types";
 import { getLatestAppConfig, prisma } from "database";
 import { setTimeout } from "timers/promises";
 
@@ -44,11 +44,14 @@ const MessageCreateEvent: DuckEvent<Events.MessageCreate> = {
 
     if (message.channel.type == ChannelType.PublicThread) {
       if (message.channel.parentId == appConfig.AIForumID) {
+        if (!(await isCurrentChannelAI(message.channelId))) {
+          console.log(`AI not ready yet, storing message`);
+          (message.client as DuckClient).delayedMessages.push(message);
+          return;
+        }
         console.log(`Message is from AI thread`);
 
-        message.reply(
-          "Quacker is currently plotting evil, and can't respond right now. Please try again later."
-        );
+        // TODO: Communicate with OpenAI
         return;
       }
     }

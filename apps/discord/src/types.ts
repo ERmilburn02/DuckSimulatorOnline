@@ -6,6 +6,7 @@ import {
   Client,
   ClientOptions,
   Collection,
+  Message,
 } from "discord.js";
 
 interface DuckEvent<T extends keyof ClientEvents> {
@@ -26,6 +27,7 @@ interface DuckCommandAutoComplete extends DuckCommand {
 class DuckClient extends Client {
   version: string;
   commands: Collection<string, DuckCommand>;
+  delayedMessages: Array<Message<boolean>>;
 
   constructor(
     version: string,
@@ -36,6 +38,7 @@ class DuckClient extends Client {
 
     this.version = version;
     this.commands = commands;
+    this.delayedMessages = [];
   }
 }
 

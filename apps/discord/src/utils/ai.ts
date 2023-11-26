@@ -43,7 +43,7 @@ const addMessageToThread: (
 
   await openai.beta.threads.messages.create(aiThread, {
     role: "user",
-    content: message.content,
+    content: `<@${message.author.id}> ${message.content}`,
   });
 
   console.log(`Message added to AI thread ${aiThread}`);
@@ -98,9 +98,12 @@ const waitForRunCompletion: (
 };
 
 const getNewMessages: (
-  oldMessage: string,
+  oldMessage: Message<boolean>,
   aiThread: string
-) => Promise<Array<string>> = async (oldMessage: string, aiThread: string) => {
+) => Promise<Array<string>> = async (
+  oldMessage: Message<boolean>,
+  aiThread: string
+) => {
   console.log(`Getting messages for AI thread ${aiThread}`);
   const messages = await openai.beta.threads.messages.list(aiThread);
 
@@ -120,7 +123,10 @@ const getNewMessages: (
       continue;
     }
 
-    if (message.content[0].text.value == oldMessage) {
+    if (
+      message.content[0].text.value ==
+      `<@${oldMessage.author.id}> ${oldMessage.content}`
+    ) {
       reachedLastMessage = true; // Reached the message that triggered this run
       continue;
     }
@@ -164,10 +170,7 @@ const handleNewAIThread = async (discordThread: AnyThreadChannel<boolean>) => {
 
     await waitForRunCompletion(threads.threadAIID, run.id);
 
-    const newMessages = await getNewMessages(
-      message.content,
-      threads.threadAIID
-    );
+    const newMessages = await getNewMessages(message, threads.threadAIID);
 
     await typingPromise;
 
@@ -198,10 +201,7 @@ const handleNewAIMessage = async (discordMessage: Message<boolean>) => {
   const run = await startRun(threads.threadAIID);
   await waitForRunCompletion(threads.threadAIID, run.id);
 
-  const newMessages = await getNewMessages(
-    discordMessage.content,
-    threads.threadAIID
-  );
+  const newMessages = await getNewMessages(discordMessage, threads.threadAIID);
 
   await typingPromise;
 

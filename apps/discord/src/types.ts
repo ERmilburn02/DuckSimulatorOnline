@@ -29,15 +29,11 @@ class DuckClient extends Client {
   commands: Collection<string, DuckCommand>;
   delayedMessages: Array<Message<boolean>>;
 
-  constructor(
-    version: string,
-    commands: Collection<string, DuckCommand>,
-    options: ClientOptions
-  ) {
+  constructor(version: string, options: ClientOptions) {
     super(options);
 
     this.version = version;
-    this.commands = commands;
+    this.commands = new Collection();
     this.delayedMessages = [];
   }
 }

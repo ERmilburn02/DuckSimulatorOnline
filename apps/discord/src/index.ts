@@ -3,6 +3,7 @@ import {
   ClientEvents,
   Collection,
   GatewayIntentBits,
+  Partials,
   REST,
   RESTPostAPIApplicationCommandsResult,
   Routes,
@@ -14,6 +15,8 @@ import { PingCommand, QuackCommand } from "./commands";
 import {
   InteractionCreateEvent,
   MessageCreateEvent,
+  MessageReactionAddEvent,
+  MessageReactionRemoveEvent,
   ReadyEvent,
   ThreadCreateEvent,
 } from "./events";
@@ -128,6 +131,8 @@ const checkForDeploymentUpdate = async (
     InteractionCreateEvent,
     ThreadCreateEvent,
     MessageCreateEvent,
+    MessageReactionAddEvent,
+    MessageReactionRemoveEvent,
   ];
 
   const CLIENT = new DuckClient(VERSION, ALL_COMMANDS, {
@@ -135,7 +140,9 @@ const checkForDeploymentUpdate = async (
       GatewayIntentBits.Guilds,
       GatewayIntentBits.GuildMessages,
       GatewayIntentBits.MessageContent,
+      GatewayIntentBits.GuildMessageReactions,
     ],
+    partials: [Partials.Message, Partials.Channel, Partials.Reaction],
     presence: {
       activities: [{ name: "your every move...", type: ActivityType.Watching }],
     },

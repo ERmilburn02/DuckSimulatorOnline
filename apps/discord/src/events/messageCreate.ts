@@ -103,7 +103,9 @@ const handleSuggestion = async (message: Message<boolean>) => {
     .setFooter({
       text: `Suggested by ${message.author.tag} | User ID: ${message.author.id}`,
       iconURL: message.author.displayAvatarURL(),
-    });
+    })
+    .setColor("Yellow")
+    .setTimestamp();
 
   let msg: Message<boolean>;
 

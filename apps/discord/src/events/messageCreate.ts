@@ -53,7 +53,7 @@ const isCurrentChannelAI: (channelID: string) => Promise<boolean> = async (
 };
 
 const handleSuggestion = async (message: Message<boolean>) => {
-  const attatchmentsToDownload: Array<{
+  const attachmentsToDownload: Array<{
     url: string;
     name: string;
     filePath: string;
@@ -72,7 +72,7 @@ const handleSuggestion = async (message: Message<boolean>) => {
             throw new Error("Unknown mime type!");
           }
           const name = `${Math.random().toString(16).slice(2)}.${ext}`;
-          attatchmentsToDownload.push({
+          attachmentsToDownload.push({
             url: att.url,
             filePath: pathResolve(tmpdir(), name),
             name,
@@ -84,7 +84,7 @@ const handleSuggestion = async (message: Message<boolean>) => {
     });
   }
 
-  const downloads = attatchmentsToDownload.map(async (att) => {
+  const downloads = attachmentsToDownload.map(async (att) => {
     const res = await fetch(att.url);
     const buffer = await res.arrayBuffer();
     await saveArrayBufferToFile(buffer, att.filePath);
@@ -107,15 +107,13 @@ const handleSuggestion = async (message: Message<boolean>) => {
 
   let msg: Message<boolean>;
 
-  if (attatchmentsToDownload.length > 0) {
-    const attatchment = new AttachmentBuilder(
-      attatchmentsToDownload[0].filePath
-    );
-    embed.setImage(`attachment://${attatchmentsToDownload[0].name}`);
+  if (attachmentsToDownload.length > 0) {
+    const attachment = new AttachmentBuilder(attachmentsToDownload[0].filePath);
+    embed.setImage(`attachment://${attachmentsToDownload[0].name}`);
 
     msg = await message.channel.send({
       embeds: [embed],
-      files: [attatchment],
+      files: [attachment],
     });
   } else {
     msg = await message.channel.send({
@@ -128,7 +126,7 @@ const handleSuggestion = async (message: Message<boolean>) => {
   await msg.react("⬆️");
   await msg.react("⬇️");
 
-  if (attatchmentsToDownload.length < 2) {
+  if (attachmentsToDownload.length < 2) {
     await msg.react("🧵");
     return;
   }
@@ -138,8 +136,8 @@ const handleSuggestion = async (message: Message<boolean>) => {
     reason: "Multiple Attachments",
   });
   const atts: Array<AttachmentBuilder> = [];
-  for (let i = 1; i < attatchmentsToDownload.length; i++) {
-    atts.push(new AttachmentBuilder(attatchmentsToDownload[i].filePath));
+  for (let i = 1; i < attachmentsToDownload.length; i++) {
+    atts.push(new AttachmentBuilder(attachmentsToDownload[i].filePath));
   }
   thread.send({
     content: "Extra attachments",

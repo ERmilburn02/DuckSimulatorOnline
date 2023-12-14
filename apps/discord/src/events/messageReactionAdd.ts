@@ -35,7 +35,7 @@ const MessageReactionAddEvent: DuckEvent<Events.MessageReactionAdd> = {
       return;
     }
 
-    await handleSuggestionReactions(reaction);
+    await handleSuggestionReactions(reaction, user);
   },
 };
 

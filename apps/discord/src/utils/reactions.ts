@@ -3,12 +3,24 @@ import {
   EmbedBuilder,
   MessageReaction,
   PartialMessageReaction,
+  PartialUser,
+  User,
 } from "discord.js";
 
 const handleSuggestionReactions = async (
-  reaction: MessageReaction | PartialMessageReaction
+  reaction: MessageReaction | PartialMessageReaction,
+  user: User | PartialUser
 ) => {
   const msg = reaction.message;
+
+  if (reaction.emoji.name == "🧵") {
+    await msg.startThread({
+      name: `Suggestion thread`,
+      reason: `User ${user.tag} requested`,
+    });
+
+    await msg.reactions.cache.get("🧵")?.remove();
+  }
 
   const upvote = msg.reactions.cache.find((r) => r.emoji.name == "⬆️");
   const downvote = msg.reactions.cache.find((r) => r.emoji.name == "⬇️");

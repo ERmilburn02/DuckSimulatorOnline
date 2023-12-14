@@ -35,7 +35,7 @@ const MessageReactionRemoveEvent: DuckEvent<Events.MessageReactionRemove> = {
       return;
     }
 
-    await handleSuggestionReactions(reaction);
+    await handleSuggestionReactions(reaction, user);
   },
 };
 

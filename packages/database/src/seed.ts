@@ -34,12 +34,16 @@ const DEFAULT_USERS = [
     username: "goldzook",
     discriminator: "0",
     avatarURL:
-      "https://cdn.discordapp.com/avatars/541331027466125315/a56fb66f88a46c077a0162a03639b8c8.webp",
+      "https://cdn.discordapp.com/avatars/541331027466125315/e1c82bc5c605d708785c4b9627e9a08d.webp",
   },
 ] as Array<User>;
 
 const DEFAULT_APP_CONFIG = {
   version: 1,
+  AIID: "asst_HF4afoLazM5tjg5gR5fYUt6f",
+  AIForumID: "1178079464035450981",
+  SuggestionChannel: "1184667490517794846",
+  RequireImageChannels: ["1184858509968416828", "1184858633528422491"],
 } as AppConfig;
 
 (async () => {

@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 import "./globals.css";
+import NavBar from "../components/Navigation/NavBar";
 
 export const metadata: Metadata = {
   title: "Duck Simulator",
@@ -14,7 +15,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-950 text-slate-300">{children}</body>
+      <body className="bg-slate-950 text-slate-300 flex flex-col">
+        <div className="flex lg:flex-row flex-col h-full">
+          <NavBar />
+          <main className="flex-1 h-auto lg:h-full bg-gray-700 text-white overflow-y-auto">
+            {children}
+          </main>
+        </div>
+      </body>
     </html>
   );
 }

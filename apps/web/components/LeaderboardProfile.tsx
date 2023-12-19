@@ -3,6 +3,8 @@
 import { type User } from "database";
 import Image from "next/image";
 
+// TODO: Use Discord Default Avatar (`https://cdn.discordapp.com/embed/avatars/${i % 6}.png) if avatar is invalid
+
 const usernameUI = (username: string, discriminator: string): string => {
   const hasDiscriminator = discriminator != "0";
 

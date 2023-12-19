@@ -34,7 +34,7 @@ const LevelCommand: DuckCommand = {
     }
 
     const nextLevel = user.level + 1;
-    const xpToNext = await getNeededXP(nextLevel);
+    const xpToNext = (await getNeededXP(nextLevel)) - user.xp;
 
     const userConfig = user.config;
     if (userConfig == null) {

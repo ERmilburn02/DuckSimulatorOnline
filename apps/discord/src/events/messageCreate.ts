@@ -3,7 +3,9 @@ import {
   ChannelType,
   EmbedBuilder,
   Events,
+  Guild,
   Message,
+  User,
 } from "discord.js";
 import { DuckClient, type DuckEvent } from "../types";
 import { getLatestAppConfig, prisma } from "database";
@@ -12,6 +14,8 @@ import { tmpdir } from "node:os";
 import { resolve as pathResolve } from "node:path";
 import { createWriteStream } from "node:fs";
 import { extension } from "mime-types";
+import { isDateOlderThanSeconds } from "../utils/date";
+import { getCurrentLevelv2 } from "../utils/level";
 
 const isFromImportantChannel: (channelID: string) => Promise<boolean> = async (
   channelID: string
@@ -199,6 +203,91 @@ const saveArrayBufferToFile: (
   });
 };
 
+const createNewUser = async (discordUser: User) => {
+  const newUser = await prisma.user.create({
+    data: {
+      discordUserId: discordUser.id,
+      avatarURL: discordUser.avatarURL({ forceStatic: true }) || "",
+      discriminator: discordUser.discriminator,
+      displayName: discordUser.displayName,
+      username: discordUser.username,
+      lastMessageTime: new Date(),
+      level: 0,
+      messages: 0,
+      xp: 0,
+      config: {
+        create: {},
+      },
+    },
+  });
+};
+
+const handleGuildMessage = async (message: Message<boolean>, guild: Guild) => {
+  const user = await prisma.user.findFirst({
+    where: {
+      discordUserId: message.author.id,
+    },
+    include: {
+      config: {},
+    },
+  });
+
+  if (user == null) {
+    await createNewUser(message.author);
+    return;
+  }
+
+  if (user.config == null) {
+    throw new Error(
+      `User Config is null for user \"${message.author.id} (${message.author.tag})\"`
+    );
+  }
+
+  const appConfig = await getLatestAppConfig();
+
+  if (
+    !isDateOlderThanSeconds(
+      user.lastMessageTime,
+      appConfig.XPWaitBetweenMessages,
+      message.createdAt
+    )
+  ) {
+    return; // previous message not old enough
+  }
+
+  let xpMultiplier = 1;
+  // TODO: Role-based multipliers
+
+  const xp = Math.floor(Math.random() * 5 * xpMultiplier) + 1; // TODO: Make Base Message XP configurable
+  const newTotalXp = user.xp + xp;
+  const newLevel = await getCurrentLevelv2(newTotalXp);
+  const newTotalMessages = user.messages + 1;
+
+  await prisma.user.update({
+    where: {
+      discordUserId: message.author.id,
+    },
+    data: {
+      xp: newTotalXp,
+      messages: newTotalMessages,
+      level: newLevel,
+
+      // Ensure everything is up to date
+      username: message.author.username,
+      displayName: message.author.displayName,
+      avatarURL: message.author.avatarURL({ forceStatic: true }) || "",
+      discriminator: message.author.discriminator,
+      lastMessageTime: message.createdAt,
+    },
+  });
+
+  if (newLevel > user.level && user.config.ping) {
+    await message.reply({
+      content: `LEVEL UP! You hit level ${newLevel.toLocaleString()}\n_Please note: This is a tempory message and will be upgraded soon. Thank you for your patience._`,
+    });
+  }
+};
+
 const MessageCreateEvent: DuckEvent<Events.MessageCreate> = {
   name: Events.MessageCreate,
   once: false,
@@ -223,6 +312,16 @@ const MessageCreateEvent: DuckEvent<Events.MessageCreate> = {
         handleNewAIMessage(message);
       }
     }
+
+    if (!message.inGuild()) {
+      return;
+    }
+
+    if (message.guildId != appConfig.appGuildID) {
+      return;
+    }
+
+    await handleGuildMessage(message, message.guild);
 
     if (!isFromImportantChannel(message.channelId)) {
       return;

@@ -16,7 +16,7 @@ interface DuckEvent<T extends keyof ClientEvents> {
 }
 
 interface DuckCommand {
-  data: SlashCommandBuilder;
+  data: Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">;
   execute(interaction: ChatInputCommandInteraction): Awaitable<void>;
 }
 

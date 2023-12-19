@@ -1,6 +1,6 @@
 import { DuckClient, type DuckCommand, type DuckEvent } from "./types";
 
-import { PingCommand, QuackCommand } from "./commands";
+import { LevelCommand, PingCommand, QuackCommand } from "./commands";
 import {
   InteractionCreateEvent,
   MessageCreateEvent,
@@ -52,7 +52,7 @@ const CheckForDeploymentUpdate = async () => {
 };
 
 const GLOBAL_CHAT_COMMANDS: Array<DuckCommand> = [PingCommand, QuackCommand];
-const LOCAL_CHAT_COMMANDS: Array<DuckCommand> = [];
+const LOCAL_CHAT_COMMANDS: Array<DuckCommand> = [LevelCommand];
 const EVENTS: Array<DuckEvent<keyof ClientEvents>> = [
   InteractionCreateEvent,
   MessageCreateEvent,

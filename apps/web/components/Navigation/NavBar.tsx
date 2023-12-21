@@ -6,6 +6,7 @@ import {
   fa3,
   faCar,
   faRankingStar,
+  fa1,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default async function NavBar() {
@@ -19,18 +20,23 @@ export default async function NavBar() {
           <ul className="flex flex-row lg:flex-col justify-evenly lg:justify-start h-full">
             <NavBarItem name="Home" link="/" icon={faHouse} />
             <NavBarItem
+              name="Duck Simulator"
+              link="/games/duck-simulator"
+              icon={fa1}
+            />
+            <NavBarItem
               name="Duck Simulator 2"
-              link="/duck-simulator-2"
+              link="/games/duck-simulator-2"
               icon={fa2}
             />
             <NavBarItem
               name="Duck Simulator 3"
-              link="/duck-simulator-3"
+              link="/games/duck-simulator-3"
               icon={fa3}
             />
             <NavBarItem
               name="Quazy Karts"
-              link="/quazy-karts"
+              link="/games/quazy-karts"
               grow
               icon={faCar}
             />

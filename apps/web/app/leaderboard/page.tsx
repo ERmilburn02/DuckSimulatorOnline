@@ -7,9 +7,11 @@ export const dynamic = "force-dynamic";
 export default function LeaderboardPage() {
   return (
     <>
-      <Suspense fallback={<SkeletonLeaderboard />}>
-        <Leaderboard />
-      </Suspense>
+      <div className="my-2">
+        <Suspense fallback={<SkeletonLeaderboard />}>
+          <Leaderboard />
+        </Suspense>
+      </div>
     </>
   );
 }

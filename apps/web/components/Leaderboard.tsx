@@ -18,7 +18,7 @@ export default async function Leaderboard() {
 
     for (let i = 0; i < placeholdersToAdd; i++) {
       users.push({
-        id: -1,
+        id: -i,
         discordUserId: "",
         displayName: "Nobody",
         username: "nobody",

@@ -8,10 +8,13 @@ const LevelCommand: DuckCommand = {
     .setName("level")
     .setDescription("Get your current level")
     .addBooleanOption((option) =>
-      option.setName("public").setDescription("Show publicly").setRequired(true)
+      option
+        .setName("public")
+        .setDescription("Show publicly")
+        .setRequired(false)
     ),
   async execute(interaction) {
-    const isPublic = interaction.options.getBoolean("public", true);
+    const isPublic = interaction.options.getBoolean("public", false) || false;
 
     await interaction.deferReply({
       ephemeral: !isPublic,

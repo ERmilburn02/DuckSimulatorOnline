@@ -21,5 +21,10 @@
     "tsx": "^3.14.0",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@8.10.2"
+  "packageManager": "pnpm@8.10.2",
+  "pnpm": {
+    "patchedDependencies": {
+      "@discordjs/builders@1.7.0": "patches/@discordjs__builders@1.7.0.patch"
+    }
+  }
 }

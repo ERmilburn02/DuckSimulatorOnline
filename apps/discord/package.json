@@ -10,6 +10,7 @@
     "clean": "rimraf .turbo node_modules dist"
   },
   "dependencies": {
+    "@discordjs/builders": "1.7.0",
     "@t3-oss/env-core": "^0.7.1",
     "discord.js": "^14.14.1",
     "mime-types": "^2.1.35",

@@ -1,5 +1,13 @@
 import NavBarItem from "./NavBarItem";
 
+import {
+  faHouse,
+  fa2,
+  fa3,
+  faCar,
+  faRankingStar,
+} from "@fortawesome/free-solid-svg-icons";
+
 export default async function NavBar() {
   return (
     <>
@@ -9,11 +17,28 @@ export default async function NavBar() {
       >
         <div className="w-full py-2 lg:w-auto lg:h-full lg:overflow-y-auto lg:py-4 px-3">
           <ul className="flex flex-row lg:flex-col justify-evenly lg:justify-start h-full">
-            <NavBarItem name="Home" link="/" />
-            <NavBarItem name="Duck Simulator 2" link="/duck-simulator-2" />
-            <NavBarItem name="Duck Simulator 3" link="/duck-simulator-3" />
-            <NavBarItem name="Quazy Karts" link="/quazy-karts" grow />
-            <NavBarItem name="Leaderboard" link="/leaderboard" />
+            <NavBarItem name="Home" link="/" icon={faHouse} />
+            <NavBarItem
+              name="Duck Simulator 2"
+              link="/duck-simulator-2"
+              icon={fa2}
+            />
+            <NavBarItem
+              name="Duck Simulator 3"
+              link="/duck-simulator-3"
+              icon={fa3}
+            />
+            <NavBarItem
+              name="Quazy Karts"
+              link="/quazy-karts"
+              grow
+              icon={faCar}
+            />
+            <NavBarItem
+              name="Leaderboard"
+              link="/leaderboard"
+              icon={faRankingStar}
+            />
           </ul>
         </div>
       </aside>

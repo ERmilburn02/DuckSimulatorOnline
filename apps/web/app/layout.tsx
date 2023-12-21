@@ -2,6 +2,12 @@ import { type Metadata } from "next";
 import "./globals.css";
 import NavBar from "../components/Navigation/NavBar";
 
+// Font Awesome
+
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
 export const metadata: Metadata = {
   title: "Duck Simulator",
   description:

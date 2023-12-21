@@ -212,6 +212,23 @@ const handleNewAIMessage = async (discordMessage: Message<boolean>) => {
   return;
 };
 
+const isCurrentChannelAI: (channelID: string) => Promise<boolean> = async (
+  channelID: string
+) => {
+  const aiThreads = (await prisma.quackerAIThreads.findMany()).map(
+    (thread) => thread.threadDiscordChannelID
+  );
+
+  let returnValue = false;
+  aiThreads.forEach((threadID) => {
+    if (channelID == threadID) {
+      returnValue = true;
+    }
+  });
+
+  return returnValue;
+};
+
 export {
   createThreads,
   getThreads,
@@ -221,4 +238,5 @@ export {
   getNewMessages,
   handleNewAIThread,
   handleNewAIMessage,
+  isCurrentChannelAI,
 };

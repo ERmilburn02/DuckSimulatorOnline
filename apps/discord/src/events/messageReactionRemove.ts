@@ -1,7 +1,7 @@
 import { Events } from "discord.js";
 import { type DuckEvent } from "../types";
 import { getLatestAppConfig } from "database";
-import { handleSuggestionReactions } from "../utils/reactions";
+import { handleSuggestionReactions } from "../handlers/general/reactions";
 
 const MessageReactionRemoveEvent: DuckEvent<Events.MessageReactionRemove> = {
   name: Events.MessageReactionRemove,

@@ -3,8 +3,6 @@
 import { type User } from "database";
 import Image from "next/image";
 
-// TODO: Use Discord Default Avatar (`https://cdn.discordapp.com/embed/avatars/${i % 6}.png) if avatar is invalid
-
 const usernameUI = (username: string, discriminator: string): string => {
   const hasDiscriminator = discriminator != "0";
 
@@ -35,6 +33,22 @@ export default function LeaderboardProfile({
   user,
   position,
 }: LeaderboardProfileProps) {
+  let userAvatar = user.avatarURL;
+  if (userAvatar == "") {
+    const idAsBI = BigInt(user.discordUserId);
+    const hasDiscriminator = user.discriminator != "0";
+
+    let defaultAvatar = BigInt(0);
+
+    if (hasDiscriminator) {
+      defaultAvatar = (idAsBI >> BigInt(22)) % BigInt(6);
+    } else {
+      defaultAvatar = BigInt(user.discriminator) % BigInt(5);
+    }
+
+    userAvatar = `https://cdn.discordapp.com/embed/avatars/${defaultAvatar}.png`;
+  }
+
   return (
     <>
       <div className="grid grid-cols-level-leaderboard-mobile md:grid-cols-level-leaderboard grid-rows-2 text-center items-center justify-items-center w-full md:w-[98%] h-24 md:h-36 border rounded-3xl md:my-2 mx-auto">
@@ -47,7 +61,7 @@ export default function LeaderboardProfile({
         <div className="row-span-2 overflow-hidden">
           <div className="relative w-16 h-16 md:w-32 md:h-32 m-4">
             <Image
-              src={`${user.avatarURL}?size=512`}
+              src={`${userAvatar}?size=512`}
               alt="Profile Image"
               fill
               className="object-cover rounded-full"

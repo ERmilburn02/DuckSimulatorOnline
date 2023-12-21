@@ -11,3 +11,16 @@ index 0280fc572..46d12935e 100644
  }
  /**
   * An interface specifically for slash command subcommands.
+diff --git a/dist/index.d.mts b/dist/index.d.mts
+index 0280fc572..46d12935e 100644
+--- a/dist/index.d.mts
++++ b/dist/index.d.mts
+@@ -1786,7 +1786,7 @@ declare class SlashCommandBuilder {
+      */
+     toJSON(): RESTPostAPIChatInputApplicationCommandsJSONBody;
+ }
+-interface SlashCommandBuilder extends SharedNameAndDescription, SharedSlashCommandOptions {
++interface SlashCommandBuilder extends SharedNameAndDescription, SharedSlashCommandOptions<false> {
+ }
+ /**
+  * An interface specifically for slash command subcommands.

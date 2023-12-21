@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@discordjs/builders@1.7.0':
-    hash: dhjn3zep224aqubaweyougbmfy
+    hash: pkaaf6ioiwtg2vfvdixsm76q3y
     path: patches/@discordjs__builders@1.7.0.patch
 
 importers:
@@ -27,7 +27,7 @@ importers:
     dependencies:
       '@discordjs/builders':
         specifier: 1.7.0
-        version: 1.7.0(patch_hash=dhjn3zep224aqubaweyougbmfy)
+        version: 1.7.0(patch_hash=pkaaf6ioiwtg2vfvdixsm76q3y)
       '@t3-oss/env-core':
         specifier: ^0.7.1
         version: 0.7.1(typescript@5.3.3)(zod@3.22.4)
@@ -194,7 +194,7 @@ packages:
       regenerator-runtime: 0.14.0
     dev: false
 
-  /@discordjs/builders@1.7.0(patch_hash=dhjn3zep224aqubaweyougbmfy):
+  /@discordjs/builders@1.7.0(patch_hash=pkaaf6ioiwtg2vfvdixsm76q3y):
     resolution: {integrity: sha512-GDtbKMkg433cOZur8Dv6c25EHxduNIBsxeHrsRoIM8+AwmEZ8r0tEpckx/sHwTLwQPOF3e2JWloZh9ofCaMfAw==}
     engines: {node: '>=16.11.0'}
     dependencies:
@@ -1330,7 +1330,7 @@ packages:
     resolution: {integrity: sha512-/hUVzkIerxKHyRKopJy5xejp4MYKDPTszAnpYxzVVv4qJYf+Tkt+jnT2N29PIPschicaEEpXwF2ARrTYHYwQ5w==}
     engines: {node: '>=16.11.0'}
     dependencies:
-      '@discordjs/builders': 1.7.0(patch_hash=dhjn3zep224aqubaweyougbmfy)
+      '@discordjs/builders': 1.7.0(patch_hash=pkaaf6ioiwtg2vfvdixsm76q3y)
       '@discordjs/collection': 1.5.3
       '@discordjs/formatters': 0.3.3
       '@discordjs/rest': 2.2.0

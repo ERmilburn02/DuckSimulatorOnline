@@ -6,6 +6,8 @@
   },
   "scripts": {
     "build": "turbo run build",
+    "build:web": "turbo run build --filter={apps/web}",
+    "build:discord": "turbo run build --filter={apps/discord}",
     "db:migrate:deploy": "turbo run db:migrate:deploy",
     "db:push": "turbo run db:push",
     "db:seed": "turbo run db:seed",

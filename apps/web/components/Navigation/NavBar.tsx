@@ -11,6 +11,8 @@ import {
   faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
 
+const NavbarHR = () => <hr className="my-2" />;
+
 export default async function NavBar() {
   return (
     <>
@@ -22,30 +24,13 @@ export default async function NavBar() {
           <ul className="flex flex-row lg:flex-col justify-evenly lg:justify-start h-full">
             <NavBarItem name="Home" link="/" icon={faHouse} />
             <NavBarItem name="Games" link="/games" icon={faGamepad} />
-            <NavBarItem
-              name="Duck Simulator"
-              link="/games/duck-simulator"
-              icon={fa1}
-              mobile={false}
-            />
+            <NavbarHR />
             <NavBarItem
               name="Duck Simulator 2"
               link="/games/duck-simulator-2"
               icon={fa2}
               mobile={false}
-            />
-            <NavBarItem
-              name="Duck Simulator 3"
-              link="/games/duck-simulator-3"
-              icon={fa3}
-              mobile={false}
-            />
-            <NavBarItem
-              name="Quazy Karts"
-              link="/games/quazy-karts"
               grow
-              icon={faCar}
-              mobile={false}
             />
             <NavBarItem
               name="Discord"

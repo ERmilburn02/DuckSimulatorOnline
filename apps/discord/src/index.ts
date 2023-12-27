@@ -51,8 +51,8 @@ const CheckForDeploymentUpdate = async () => {
   }
 };
 
-const GLOBAL_CHAT_COMMANDS: Array<DuckCommand> = [PingCommand, QuackCommand];
-const LOCAL_CHAT_COMMANDS: Array<DuckCommand> = [LevelCommand];
+const GLOBAL_CHAT_COMMANDS: Array<DuckCommand> = [QuackCommand];
+const LOCAL_CHAT_COMMANDS: Array<DuckCommand> = [LevelCommand, PingCommand];
 const EVENTS: Array<DuckEvent<keyof ClientEvents>> = [
   InteractionCreateEvent,
   MessageCreateEvent,

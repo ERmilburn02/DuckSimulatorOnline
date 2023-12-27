@@ -1,9 +1,9 @@
-import Link from "next/link";
+import PageComingSoon from "@/components/page-coming-soon";
 
 export default async function IndexPage() {
   return (
-    <div className="w-full h-full grid place-items-center">
-      TODO: Welcome message
-    </div>
+    <>
+      <PageComingSoon />
+    </>
   );
 }

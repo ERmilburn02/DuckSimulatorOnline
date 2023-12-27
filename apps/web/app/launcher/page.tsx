@@ -1,6 +1,6 @@
 import PageComingSoon from "@/components/page-coming-soon";
 
-export default function QuazyKartsPage() {
+export default function LauncherPage() {
   return (
     <>
       <PageComingSoon />

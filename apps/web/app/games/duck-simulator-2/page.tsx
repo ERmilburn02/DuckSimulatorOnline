@@ -3,15 +3,17 @@ import { faXbox, faSteam } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import DS2Carousel from "./_components/ds2-carousel";
 
 export default function DuckSimulator2Page() {
   return (
     <>
       <div className="grid place-items-center h-full w-full">
-        <div className="lg:mx-16 text-center">
+        <div className="lg:mx-16 text-center flex flex-col items-center">
           <h1 className="font-bold lg:text-5xl text-2xl mb-2">
             Duck Simulator 2
           </h1>
+          <DS2Carousel />
           <p className="lg:mx-16 mx-4 text-sm lg:text-base">
             Duck Simulator 2 is a game about quacking a rubber duck. Seems
             simple enough, right? Eventually, the game begins to break and the

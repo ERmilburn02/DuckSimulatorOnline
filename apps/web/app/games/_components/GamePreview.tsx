@@ -12,7 +12,7 @@ export default function GamePreview({ image, name }) {
   return (
     <>
       <Link href={`#`} className="hover:-translate-y-2 transition-transform">
-        <Card className="w-48 m-4">
+        <Card className="w-48 m-4 bg-gray-800 border-black text-slate-300">
           <CardContent className="flex aspect-video items-center justify-center p-0">
             <div className="w-full h-full relative">
               <Image
@@ -23,7 +23,7 @@ export default function GamePreview({ image, name }) {
               />
             </div>
           </CardContent>
-          <CardFooter className="">
+          <CardFooter className="p-0 m-0 my-2">
             <div className="w-full flex justify-center text-center">
               <span>{name}</span>
             </div>

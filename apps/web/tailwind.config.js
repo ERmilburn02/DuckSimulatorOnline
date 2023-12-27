@@ -18,8 +18,7 @@ module.exports = {
     },
     extend: {
       gridTemplateColumns: {
-        "level-leaderboard": "1fr 2fr 4fr 4fr",
-        "level-leaderboard-mobile": "1fr 3fr 4fr 4fr",
+        "level-leaderboard": "1fr 2fr 3fr 3fr",
       },
       colors: {
         border: "hsl(var(--border))",

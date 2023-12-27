@@ -12,6 +12,7 @@
       "dependsOn": ["lint", "^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
+    "db:migrate:dev": {},
     "db:migrate:deploy": {},
     "db:push": {
       "cache": false

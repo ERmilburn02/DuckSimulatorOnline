@@ -10,10 +10,10 @@ export default function DuckSimulator2Page() {
     <>
       <div className="grid place-items-center h-full w-full">
         <div className="lg:mx-16 text-center flex flex-col items-center">
+          <DS2Carousel />
           <h1 className="font-bold lg:text-5xl text-2xl mb-2">
             Duck Simulator 2
           </h1>
-          <DS2Carousel />
           <p className="lg:mx-16 mx-4 text-sm lg:text-base">
             Duck Simulator 2 is a game about quacking a rubber duck. Seems
             simple enough, right? Eventually, the game begins to break and the

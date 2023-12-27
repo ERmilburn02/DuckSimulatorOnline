@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
 import { Url } from "../../types";
+import { cn } from "@/lib/utils";
 
 export default function NavBarItem({
   name,
@@ -11,18 +12,28 @@ export default function NavBarItem({
   link,
   external,
   grow,
+  mobile,
 }: {
   name: string;
   icon: IconDefinition;
   link: Url;
   external?: boolean;
   grow?: boolean;
+  mobile?: boolean;
 }) {
   const target = external ? "_blank" : undefined;
+  const showOnMobile = mobile == true;
+  const dontShowOnMobile = mobile == false;
 
   return (
     <>
-      <li className={grow ? "lg:grow" : ""}>
+      <li
+        className={cn(
+          grow && "lg:grow",
+          dontShowOnMobile && "hidden lg:block",
+          showOnMobile && "block lg:hidden"
+        )}
+      >
         <Link
           href={link}
           target={target}

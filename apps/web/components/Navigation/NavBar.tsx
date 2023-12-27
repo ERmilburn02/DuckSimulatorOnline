@@ -1,3 +1,4 @@
+import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import NavBarItem from "./NavBarItem";
 
 import {
@@ -39,6 +40,12 @@ export default async function NavBar() {
               link="/games/quazy-karts"
               grow
               icon={faCar}
+            />
+            <NavBarItem
+              name="Discord"
+              link="https://discord.gg/duck-simulator-908148295606628363"
+              icon={faDiscord}
+              external
             />
             <NavBarItem
               name="Leaderboard"

@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXbox, faSteam } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 
+import { Button } from "@/components/ui/button";
+
 export default function DuckSimulator2Page() {
   return (
     <>
@@ -24,7 +26,7 @@ export default function DuckSimulator2Page() {
           </p>
           <br />
           <div className="flex justify-center items-center">
-            <Link
+            {/* <Link
               href={`https://xbox.com/en-us/games/store/duck-simulator-2/9pkkrpblfqpk`}
               target="_blank"
             >
@@ -38,7 +40,23 @@ export default function DuckSimulator2Page() {
                 <FontAwesomeIcon icon={faSteam} className="mr-2" />
                 <span>Steam</span>
               </button>
-            </Link>
+            </Link> */}
+            <Button asChild size="download" variant="xbox">
+              <Link
+                href={`https://xbox.com/en-us/games/store/duck-simulator-2/9pkkrpblfqpk`}
+                target="_blank"
+              >
+                <FontAwesomeIcon icon={faXbox} className="mr-2" />
+                <span>Xbox</span>
+              </Link>
+            </Button>
+
+            <Button asChild size="download" variant="steam">
+              <Link href={`https://s.team/a/1808800`} target="_blank">
+                <FontAwesomeIcon icon={faSteam} className="mr-2" />
+                <span>Steam</span>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

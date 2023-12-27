@@ -46,6 +46,7 @@ model AppConfig {
   RequireImageChannels  String[] @default([])
   SuggestionChannel     String   @default("")
   XPWaitBetweenMessages Int      @default(5)
+  ownerID               String   @default("")
 }
 
 model QuackerAIThreads {

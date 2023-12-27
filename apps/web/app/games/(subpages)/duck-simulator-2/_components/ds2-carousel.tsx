@@ -5,11 +5,10 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 import ss1 from "./_assets/ss_a098ed3e35dab865331c76a873c9e7d0a4aef057.jpg";
 import ss2 from "./_assets/ss_0fb1776782bc328b5e6be30de69db8a41a9a57ed.jpg";
@@ -19,7 +18,7 @@ import ss5 from "./_assets/ss_a2e9bbaf91863923fca8e837cdaca9355d455a9a.jpg";
 
 const screenshots = [ss1, ss2, ss3, ss4, ss5];
 
-const imageFromIndex = (index: number): StaticImageData => {
+const imageFromIndex = (index: number): string | StaticImport => {
   return screenshots.at(index);
 };
 

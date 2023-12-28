@@ -11,7 +11,7 @@ import {
   faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
 
-const NavbarHR = () => <hr className="my-2" />;
+const NavbarHR = () => <hr className="my-2 hidden lg:block" />;
 
 export default async function NavBar() {
   return (

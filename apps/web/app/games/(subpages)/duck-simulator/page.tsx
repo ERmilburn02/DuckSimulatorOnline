@@ -13,14 +13,14 @@ export default function DuckSimulator1Page() {
             You might be wondering what on earth this is. Well, in order for
             Duck Simulator 2 to exist, Duck Simulator 1 had to come first! Duck
             Simulator 2 includes a remake of this game, but THIS is the one and
-            only! So if you're just dying for the juicy rubber duck lore, feel
-            free to check it out!
+            only! So if you&apos;re just dying for the juicy rubber duck lore,
+            feel free to check it out!
           </p>
           <Link
             href={`/games/duck-simulator-2`}
             className="text-amber-300 font-bold lg:mx-16 mx-4 text-sm lg:text-base"
           >
-            If you haven't already, check out Duck Simulator 2!
+            If you haven&apos;t already, check out Duck Simulator 2!
           </Link>
           <br />
           <h3 className="lg:mx-16 mx-4 lg:text-xl font-bold">

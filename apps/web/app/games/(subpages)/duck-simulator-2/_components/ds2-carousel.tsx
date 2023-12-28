@@ -34,6 +34,7 @@ export default function DS2Carousel() {
         ]}
         opts={{
           loop: true,
+          watchDrag: false,
         }}
       >
         <CarouselContent>

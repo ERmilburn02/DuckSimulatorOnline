@@ -48,6 +48,7 @@ export default function DS2Carousel() {
                         src={imageFromIndex(index)}
                         alt=""
                         className="rounded-lg object-cover"
+                        loading="eager"
                       />
                     </div>
                   </CardContent>

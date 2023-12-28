@@ -28,21 +28,6 @@ export default function DuckSimulator2Page() {
           </p>
           <br />
           <div className="flex justify-center items-center">
-            {/* <Link
-              href={`https://xbox.com/en-us/games/store/duck-simulator-2/9pkkrpblfqpk`}
-              target="_blank"
-            >
-              <button className="border rounded-xl w-44 h-16 p-1 mx-1 bg-[#0e7a0d] font-bold flex justify-center items-center text-3xl">
-                <FontAwesomeIcon icon={faXbox} className="mr-2" />
-                <span>Xbox</span>
-              </button>
-            </Link>
-            <Link href={`https://s.team/a/1808800`} target="_blank">
-              <button className="border rounded-xl w-44 h-16 p-1 mx-1 bg-[#171a21] font-bold flex justify-center items-center text-3xl">
-                <FontAwesomeIcon icon={faSteam} className="mr-2" />
-                <span>Steam</span>
-              </button>
-            </Link> */}
             <Button asChild size="download" variant="xbox">
               <Link
                 href={`https://xbox.com/en-us/games/store/duck-simulator-2/9pkkrpblfqpk`}

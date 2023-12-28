@@ -6,32 +6,37 @@ import ds2Image from "./_assets/ds2.jpg";
 import qkImage from "./_assets/qk.png";
 
 import blackImage from "./_assets/black720p.png";
-import { Url } from "@/types";
+import { GameStatus, Url } from "@/types";
 
 const GAMES: {
   name: string;
   image: StaticImport;
   link: Url;
+  status: GameStatus;
 }[] = [
   {
     name: "Duck Simulator",
     image: ds1Image,
     link: "/games/duck-simulator",
+    status: "Released",
   },
   {
     name: "Duck Simulator 2",
     image: ds2Image,
     link: "/games/duck-simulator-2",
+    status: "Released",
   },
   {
     name: "Duck Simulator 3",
     image: blackImage,
     link: "/games/duck-simulator-3",
+    status: "Hold",
   },
   {
     name: "Quazy Karts",
     image: qkImage,
     link: "/games/quazy-karts",
+    status: "Development",
   },
 ];
 
@@ -47,6 +52,7 @@ export default function GamesPage() {
               name={game.name}
               image={game.image}
               link={game.link}
+              status={game.status}
             />
           ))}
         </div>

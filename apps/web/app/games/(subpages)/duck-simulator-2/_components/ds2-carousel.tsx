@@ -18,10 +18,6 @@ import ss5 from "./_assets/ss_a2e9bbaf91863923fca8e837cdaca9355d455a9a.jpg";
 
 const screenshots = [ss1, ss2, ss3, ss4, ss5];
 
-const imageFromIndex = (index: number): string | StaticImport => {
-  return screenshots.at(index);
-};
-
 export default function DS2Carousel() {
   return (
     <>
@@ -38,7 +34,7 @@ export default function DS2Carousel() {
         }}
       >
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
+          {screenshots.map((image, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
                 <Card>
@@ -46,7 +42,7 @@ export default function DS2Carousel() {
                     <div className="relative w-full h-full">
                       <Image
                         fill
-                        src={imageFromIndex(index)}
+                        src={image}
                         alt=""
                         className="rounded-lg object-cover"
                         loading="eager"

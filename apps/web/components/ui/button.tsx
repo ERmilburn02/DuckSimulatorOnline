@@ -20,6 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         steam: "bg-[#171a21] text-primary-foreground hover:bg-[#171a21]/90",
         xbox: "bg-[#0e7a0d] text-primary-foreground hover:bg-[#0e7a0d]/90",
+        gamejolt: "bg-[#2f7f6f] text-primary-foreground hover:bg-[#2f7f6f]/90",
       },
       size: {
         default: "h-10 px-4 py-2",

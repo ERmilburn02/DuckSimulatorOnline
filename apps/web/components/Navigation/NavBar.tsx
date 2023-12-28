@@ -9,6 +9,7 @@ import {
   faRankingStar,
   fa1,
   faGamepad,
+  faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarHR = () => <hr className="my-2 hidden lg:block" />;
@@ -32,6 +33,7 @@ export default async function NavBar() {
               mobile={false}
               grow
             />
+            <NavBarItem name="Privacy" link="/privacy" icon={faInfoCircle} />
             <NavBarItem
               name="Discord"
               link="https://discord.gg/duck-simulator-908148295606628363"

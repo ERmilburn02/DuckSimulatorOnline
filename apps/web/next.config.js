@@ -1,9 +1,10 @@
 const { PrismaPlugin } = require("@prisma/nextjs-monorepo-workaround-plugin");
+const withMDX = require("@next/mdx")();
 
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -21,4 +22,7 @@ module.exports = {
 
     return config;
   },
+  pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
 };
+
+module.exports = withMDX(nextConfig);

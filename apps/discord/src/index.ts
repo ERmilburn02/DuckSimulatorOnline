@@ -5,6 +5,7 @@ import {
   LevelCommand,
   PingCommand,
   QuackCommand,
+  LeaderboardCommand,
 } from "./commands";
 import {
   InteractionCreateEvent,
@@ -57,7 +58,11 @@ const CheckForDeploymentUpdate = async () => {
 };
 
 const GLOBAL_CHAT_COMMANDS: Array<DuckCommand> = [QuackCommand, AdminCommand];
-const LOCAL_CHAT_COMMANDS: Array<DuckCommand> = [LevelCommand, PingCommand];
+const LOCAL_CHAT_COMMANDS: Array<DuckCommand> = [
+  LevelCommand,
+  PingCommand,
+  LeaderboardCommand,
+];
 const EVENTS: Array<DuckEvent<keyof ClientEvents>> = [
   InteractionCreateEvent,
   MessageCreateEvent,

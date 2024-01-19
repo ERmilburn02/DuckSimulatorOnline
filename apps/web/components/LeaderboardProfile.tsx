@@ -84,7 +84,7 @@ export default function LeaderboardProfile({
         <div className="text-md md:text-3xl">
           {user.xp.toLocaleString("en-US")} XP
         </div>
-        <div className="text-md md:text-3xl">
+        <div className="text-md md:text-3xl overflow-hidden whitespace-nowrap overflow-ellipsis w-10/12">
           {user.messages.toLocaleString("en-US")} messages
         </div>
       </div>

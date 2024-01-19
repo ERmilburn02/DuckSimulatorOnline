@@ -98,6 +98,9 @@ importers:
       '@next/mdx':
         specifier: ^14.0.4
         version: 14.0.4(@mdx-js/loader@3.0.0)(@mdx-js/react@3.0.0)
+      '@radix-ui/react-aspect-ratio':
+        specifier: ^1.0.3
+        version: 1.0.3(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-slot':
         specifier: ^1.0.2
         version: 1.0.2(@types/react@18.2.45)(react@18.2.0)
@@ -894,6 +897,27 @@ packages:
     resolution: {integrity: sha512-GY+bF672h4XE1ikEh3zzXEyP7LAuQAdVYhpJAf1tDEEagqivHJCd0t7CtJW716pNkQfOHLC0CuDuyy3xzO8SXw==}
     dev: true
 
+  /@radix-ui/react-aspect-ratio@1.0.3(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-fXR5kbMan9oQqMuacfzlGG/SQMcmMlZ4wrvpckv8SgUulD0MMpspxJrxg/Gp/ISV3JfV1AeSWTYK9GvxA4ySwA==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.6
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
+      '@types/react': 18.2.45
+      '@types/react-dom': 18.2.17
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.45)(react@18.2.0):
     resolution: {integrity: sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw==}
     peerDependencies:
@@ -906,6 +930,27 @@ packages:
       '@babel/runtime': 7.23.6
       '@types/react': 18.2.45
       react: 18.2.0
+    dev: false
+
+  /@radix-ui/react-primitive@1.0.3(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-yi58uVyoAcK/Nq1inRY56ZSjKypBNKTa/1mcL8qdl6oJeEaDbOldlzrGn7P6Q3Id5d+SYNGc5AJgc4vGhjs5+g==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.6
+      '@radix-ui/react-slot': 1.0.2(@types/react@18.2.45)(react@18.2.0)
+      '@types/react': 18.2.45
+      '@types/react-dom': 18.2.17
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@radix-ui/react-slot@1.0.2(@types/react@18.2.45)(react@18.2.0):
@@ -1085,7 +1130,6 @@ packages:
     resolution: {integrity: sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==}
     dependencies:
       '@types/react': 18.2.45
-    dev: true
 
   /@types/react@18.2.45:
     resolution: {integrity: sha512-TtAxCNrlrBp8GoeEp1npd5g+d/OejJHFxS3OWmrPBMFaVQMSN0OFySozJio5BHxTuTeug00AVXVAjfDSfk+lUg==}

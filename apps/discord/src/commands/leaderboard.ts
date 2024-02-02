@@ -8,7 +8,7 @@ const LeaderboardCommand: DuckCommand = {
   async execute(interaction) {
     await interaction.reply({
       content:
-        "Check out the server leaderboard at https://duck-simulator-online-web.vercel.app/leaderboard",
+        "Check out the server leaderboard at https://ducksimulator.com/leaderboard",
       ephemeral: true,
     });
   },

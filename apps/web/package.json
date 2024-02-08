@@ -20,6 +20,8 @@
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-table": "^8.11.2",
+    "@upstash/ratelimit": "^1.0.1",
+    "@upstash/redis": "^1.28.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "embla-carousel-autoplay": "8.0.0-rc17",

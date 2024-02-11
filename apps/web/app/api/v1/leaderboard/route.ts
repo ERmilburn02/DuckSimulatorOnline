@@ -49,8 +49,11 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const exists = await redis.exists(`ducksimonlineapikey_${key}`);
-  if (!exists) {
+  const active = await redis.hget<boolean>(
+    `ducksimonlineapikey_${key}`,
+    "active"
+  );
+  if (!active) {
     return NextResponse.json(
       {
         error: "Unauthorized",
@@ -64,9 +67,9 @@ export async function GET(request: NextRequest) {
   const skip = page * 10;
 
   const totalUsers = await prisma.user.findMany({ select: { id: true } });
-  const totalPages = Math.floor(totalUsers.length / 10);
+  const totalPages = Math.floor((totalUsers.length - 1) / 10);
 
-  if (skip > totalPages) {
+  if (page > totalPages) {
     return NextResponse.json(
       {
         error: "Bad Request",

@@ -23,6 +23,15 @@ const nextConfig = {
     return config;
   },
   pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
+  redirects: async () => {
+    return [
+      {
+        source: "/discord",
+        destination: "https://discord.gg/duck-simulator-908148295606628363",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 module.exports = withMDX(nextConfig);

@@ -5,7 +5,7 @@ export default function MarkdownLayout({
 }) {
   return (
     <>
-      <div className="w-11/12 mx-auto my-4 prose prose-invert text-center">
+      <div className="mx-auto my-4 prose lg:prose-lg prose-invert text-center">
         {children}
       </div>
     </>

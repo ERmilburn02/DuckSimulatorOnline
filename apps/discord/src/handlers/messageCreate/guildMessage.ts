@@ -41,6 +41,13 @@ export const handleGuildMessage = async (
   }
 
   let xpMultiplier = 1;
+
+  const multipliers = await prisma.roleXPMultiplier.findMany();
+  multipliers.forEach((multiplier) => {
+    if (message.member?.roles.cache.has(multiplier.discordRoleId)) {
+      xpMultiplier *= multiplier.xpMultiplier;
+    }
+  });
   // TODO: Role-based multipliers
 
   const xp = Math.floor(Math.random() * 5 * xpMultiplier) + 1; // TODO: Make Base Message XP configurable

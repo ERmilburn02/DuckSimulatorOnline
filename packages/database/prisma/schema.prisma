@@ -32,6 +32,12 @@ model UserConfig {
   user   User    @relation(fields: [userId], references: [id])
 }
 
+model RoleXPMultiplier {
+  id            Int    @id @default(autoincrement())
+  discordRoleId String @unique @default("")
+  xpMultiplier  Float  @default(1.0)
+}
+
 model AppConfig {
   version               Int      @id @default(autoincrement())
   lastDeployTime        DateTime @default(now()) // Last time commands were deployed to Discord
